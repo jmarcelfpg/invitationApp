@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "sourceMap": true,
+        "outDir": "./",
+        "rootDir": "./src/server",
+        "noEmit": false,
+        "noEmitOnError": true
+    },
+    "exclude": [
+        "./src/public",
+        "./__tests__/"
+    ]
+}
