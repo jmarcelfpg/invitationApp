@@ -4,8 +4,14 @@ import path from 'path';
 
 const app = express();
 
+app.set('port', process.env.PORT || 3000);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('*', (req, res, next) => { res.sendFile(path.join(__dirname, 'public', 'index.html')); });
 
+// Catching all the routes
+app.all('*', (req, res) => {
+    res.status(404).send();
+});
+
 const serverHTTP = http.createServer(app);
-serverHTTP.listen(3000, () => { console.log('server running on port 3000'); });
+serverHTTP.listen(app.get('port'), () => { console.log('server running on port ', app.get('port')); });
