@@ -4,20 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Generation ????</title>
+    <title>I Love 80s</title>
 </head>
 <body>
-    <form action="">
+    <form action="/register" method="POST">
         <Legend>Registrar</Legend>
-        <label for="name">Nombre: <input type="text" name="name" id="name" placeholder="ingrese su nombre" required></label><span>*</span>
+        <label for="name">Nombre: <input type="text" name="name" id="name" placeholder="Ingrese su nombre" required></label><span>*</span>
         <br />
-        <label for="apellido">Apellido: <input type="text" name="name" id="name" placeholder="ingrese su apellido" required></label><span>*</span>
+        <label for="apellido">Apellido: <input type="text" name="apellido" id="apellido" placeholder="Ingrese su apellido" required></label><span>*</span>
         <br />
-        <label for="email">Email: <input type="email" name="name" id="name" placeholder="ingrese un email" required></label><span>*</span>
+        <label for="email">Email: <input type="email" name="email" id="email" placeholder="Ingrese un email" required></label><span>*</span>
         <br />
-        <label for="password">Password: <input type="email" name="name" id="name" placeholder="ingrese un password" required></label><span>*</span>
+        <label for="emailConfirm">Confirmar Email: <input type="email" name="emailConfirm" id="emailConfirm" placeholder="Repita su email" required></label><span>*</span>
         <br />
-        <label for="contact">Celular: <input type="text" name="name" id="name" placeholder="ingrese su celular"></label>
+        <label for="password">Password: <input type="password" name="password" id="password" placeholder="Ingrese una contraseña" required></label><span>*</span>
+        <br />
+        <label for="passwordconfirm">Confirmar Password: <input type="password" name="passwordconfirm" id="passwordconfirm" placeholder="Repita su contraseña" required></label><span>*</span>
+        <br />
+        <label for="contact">Celular: <input type="text" name="contact" id="contact" placeholder="Ingrese su celular"></label>
         <br />
         <label for="confirmation">Confirmacion al evento: </label>
         <select name="confirmation" id="confirmation">
@@ -26,7 +30,7 @@
             <option value="2">Rechazado</option>
         </select>
         <br />
-        <button>Registrar</button>
+        <input type="submit" value="Registrar" id="register">
         <a href="/index">Regresar al Log in</a>
     </form>
     <script src="js/register.js"></script>
