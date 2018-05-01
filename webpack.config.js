@@ -31,7 +31,9 @@ const clientConfig = {
     target: 'web',
     entry: {
         index: path.resolve(__dirname, 'src' , 'public', 'js', 'index.ts'),
-        register: path.resolve(__dirname, 'src' , 'public', 'js', 'register.ts')
+        register: path.resolve(__dirname, 'src' , 'public', 'js', 'register.ts'),
+        board: path.resolve(__dirname, 'src' , 'public', 'js', 'board.ts'),
+        resetPass: path.resolve(__dirname, 'src' , 'public', 'js', 'resetPass.ts')
     },
     output: {
         path: path.resolve(__dirname, 'public', 'js'),
