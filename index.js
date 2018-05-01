@@ -9,6 +9,7 @@ const path_1 = __importDefault(require("path"));
 const app = express_1.default();
 app.set('port', process.env.PORT || 3000);
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
+app.use('/board', (req, res, next) => { res.sendFile(path_1.default.join(__dirname, 'public', 'board.html')); });
 app.use('/resetPass', (req, res, next) => { res.sendFile(path_1.default.join(__dirname, 'public', 'resetPass.html')); });
 app.use('/register', (req, res, next) => { res.sendFile(path_1.default.join(__dirname, 'public', 'register.html')); });
 app.use('*', (req, res, next) => { res.sendFile(path_1.default.join(__dirname, 'public', 'index.html')); });

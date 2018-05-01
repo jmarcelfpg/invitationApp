@@ -8,7 +8,7 @@
     "start": "node index.js",
     "start-development": "nodemon dist/server --watch dist",
     "build": "webpack && tsc -p tsconfig.server.json",
-    "build-watch": "concurrently \"webpack -w\" \"tsc -p tsconfig.server.json -w\" \"nodemon --watch public\"",
+    "build-watch": "concurrently \"webpack -w\" \"tsc -p tsconfig.server.json -w\" \"nodemon --watch public --watch ./index.js\"",
     "build-server": "tsc -p tsconfig.server.json",
     "build-serverWatch": "tsc -p tsconfig.server.json -w",
     "build-client": "webpack",
