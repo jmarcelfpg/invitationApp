@@ -2,3 +2,4 @@
 public/js
 node_modules/**/*
 package-lock.json
+email
