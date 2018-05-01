@@ -1,0 +1,10 @@
+{
+  "name": "invitationApp",
+  "version": "1.0.0",
+  "description": "\"Invitation to festial for UAG generation\"",
+  "main": "index.js",
+  "repository": "https://github.com/jmarcelfpg/invitationApp.git",
+  "author": "JMARCELFPG",
+  "license": "MIT",
+  "private": false
+}
