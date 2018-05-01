@@ -2,10 +2,10 @@
   "name": "invitationApp",
   "version": "1.0.0",
   "description": "\"Invitation to festial for UAG generation\"",
-  "main": "/dist/server/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node dist/server",
+    "start": "node index.js",
     "start-development": "nodemon dist/server --watch dist",
     "build": "webpack && tsc -p tsconfig.server.json",
     "build-watch": "concurrently \"webpack -w\" \"tsc -p tsconfig.server.json -w\" \"nodemon dist/server --watch dist\"",
@@ -38,6 +38,7 @@
     "webpack-cli": "^2.0.15"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "nodemailer": "^4.6.4"
   }
 }
