@@ -4,10 +4,11 @@
         "sourceMap": true,
         "outDir": "./",
         "rootDir": "./src/server",
-        "noEmit": false
+        "noEmit": false,
+        "noEmitOnError": true
     },
     "exclude": [
-      "./src/public",
-      "./__tests__/"
+        "./src/public",
+        "./__tests__/"
     ]
 }
