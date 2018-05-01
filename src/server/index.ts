@@ -6,9 +6,12 @@ const app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/board', (req, res, next) => { res.sendFile(path.join(__dirname, 'public', 'board.html')); });
-app.use('/resetPass', (req, res, next) => { res.sendFile(path.join(__dirname, 'public', 'resetPass.html')); });
-app.use('/register', (req, res, next) => { res.sendFile(path.join(__dirname, 'public', 'register.html')); });
+app.get('/board', (req, res, next) => { res.sendFile(path.join(__dirname, 'public', 'board.html')); });
+app.get('/resetPass', (req, res, next) => { res.sendFile(path.join(__dirname, 'public', 'resetPass.html')); });
+app.get('/register', (req, res, next) => { res.sendFile(path.join(__dirname, 'public', 'register.html')); });
+app.post('/register', (req, res, next) => {
+    res.sendFile(path.join(__dirname, 'public', 'registered.html'));
+});
 app.use('*', (req, res, next) => { res.sendFile(path.join(__dirname, 'public', 'index.html')); });
 
 // Catching all the routes
