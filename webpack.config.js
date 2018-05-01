@@ -29,10 +29,13 @@ const serverConfig = {
 // consider improve the clientConfig to aviod mix all the modules in one bundle
 const clientConfig = {
     target: 'web',
-    entry: path.resolve(__dirname, 'src' , 'public', 'js', 'index.ts'),
+    entry: {
+        index: path.resolve(__dirname, 'src' , 'public', 'js', 'index.ts'),
+        register: path.resolve(__dirname, 'src' , 'public', 'js', 'register.ts')
+    },
     output: {
         path: path.resolve(__dirname, 'public', 'js'),
-        filename: "bundle.js"
+        filename: "[name].js"
     },
     devtool: 'sourcemap',
     resolve: {
