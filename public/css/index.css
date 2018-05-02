@@ -39,6 +39,7 @@ a{
 }
 
 input{
+    color: cyan;
     font-size: 1.5rem;
     background-color: transparent;
     border: none;
