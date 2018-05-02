@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,26 @@
     <title>I Love 80s</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
+
 <body>
-    <form action="/login" method="POST" class="login">
-        <legend>Login</legend>
-        <label for="userName">User Name: <input type="text" name="userName" id="userName" placeholder="ingrese su user name" required></label>
-        <br />
-        <label for="password">Password: <input type="password" name="password" id="password" placeholder="ingrese su password" required></label>
-        <br/>
-        <button>Ingresar</button>
-        <a href="/register">Registar</a>
-    </form>
-    <a href="">Olvido su contraseña?</a>
+    <div class="wrapper">
+        <form action="/login" method="POST" class="login">
+            <legend>Login</legend>
+            <br/>
+            <input type="text" name="userName" id="userName" placeholder="Ingrese su user name" required>
+            <label for="userName">User Name</label>
+<br/>
+            <input type="password" name="password" id="password" placeholder="Ingrese su password" required>
+            <label for="password">Password</label>
+            <br/>
+
+            <button>Ingresar</button>
+            <br/>
+            <a href="/register">Registar</a>
+        </form>
+        <a href="">Olvido su contraseña?</a>
+    </div>
     <script src="js/index.js"></script>
 </body>
+
 </html>
