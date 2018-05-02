@@ -29,9 +29,9 @@ a{
 .navbar{
 	display: flex;
 	flex-flow: row;
+	width: 80vw;
 	height: 100px;
 	align-items: stretch;
-	justify-content: space-between;
 	border: 3px solid transparent;
 	border-radius: 20px;
 	padding: 0;
@@ -41,6 +41,7 @@ a{
 }
 
 .navigator{
+	flex: 1 1 0px;
 	display: flex;
 	flex-flow: row;
 	list-style: none;
@@ -49,6 +50,7 @@ a{
 	margin: 0;
 }
 .navigator li {
+	flex: 1 1 0px;
 	font-size: 32px;
 	color: tomato;
 	display: inline-flex;
@@ -56,7 +58,6 @@ a{
 	background-color: #fff;
 	justify-content: center;
 	transition: background-color .2s ease-in;
-	padding: 0 30px;
 }
 
 .navigator li:hover{
@@ -105,4 +106,45 @@ a{
 
 .map{
 	font-size: 30px;
+}
+
+.shrinked{
+	display: none;
+}
+
+.uag{
+	width: 100px;
+	height: 100%;
+	background-image: url("../images/uagIcon.jpg");
+	background-size: 100% 100%;
+}
+
+@media only screen and (max-width: 680px){
+	.uag{
+		width: 30%;
+		height: 30%;
+		background-image: url("../images/uagIcon.jpg");
+		background-size: 100% 100%;
+	}
+	.logo{
+		width: 100%;
+		height: 400px;
+		margin-bottom: 50px;
+	}
+	.navigator{
+		width: 100%;
+		height: 100px;
+	}
+	.wider{
+		display: none;
+	}
+	.shrinked{
+		display: block;
+	}
+	.navbar{
+		position: relative;
+	}
+	.content{
+		margin-top: 100px;
+	}
 }
