@@ -1,20 +1,75 @@
 body{
-    background: 
-        linear-gradient(
-            cyan,
-            transparent
-	    ),
-	    linear-gradient(
-	    	-45deg,
-	    	magenta,
-	    	transparent
-	    ),
-	    linear-gradient(
-	    	45deg,
-	    	yellow,
-	    	transparent
-        );
-    background-blend-mode: multiply;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	color: white;
+	background-color:rgb(5, 126, 5);
+	background-image: linear-gradient(30deg, rgba(160, 9, 115, 0.945) 12%, transparent 12.5%, transparent 87%, rgba(160, 9, 115, 0.945) 87.5%, rgba(160, 9, 115, 0.945)),
+	linear-gradient(150deg, rgba(160, 9, 115, 0.945) 12%, transparent 12.5%, transparent 87%, rgba(160, 9, 115, 0.945) 87.5%, rgba(160, 9, 115, 0.945)),
+	linear-gradient(30deg, rgba(160, 9, 115, 0.945) 12%, transparent 12.5%, transparent 87%, rgba(160, 9, 115, 0.945) 87.5%, rgba(160, 9, 115, 0.945)),
+	linear-gradient(150deg, rgba(160, 9, 115, 0.945) 12%, transparent 12.5%, transparent 87%, rgba(160, 9, 115, 0.945) 87.5%, rgba(160, 9, 115, 0.945)),
+	linear-gradient(60deg, rgb(151, 137, 5) 25%, transparent 25.5%, transparent 75%, rgb(151, 137, 5) 75%, rgb(151, 137, 5)), 
+	linear-gradient(60deg, rgb(151, 137, 5) 25%, transparent 25.5%, transparent 75%, rgb(151, 137, 5) 75%, rgb(151, 137, 5));
+	background-size:80px 140px;
+	background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+	text-shadow: 1px 1px 1px black;
+}
+
+.wrapper{
+	width: 80%;
+	display: flex;
+	flex-flow: column;
+}
+
+a{
+	color: cyan;
+}
+
+.navbar{
+	display: flex;
+	flex-flow: row;
+	height: 100px;
+	align-items: stretch;
+	justify-content: space-between;
+	border: 3px solid transparent;
+	border-radius: 20px;
+	padding: 0;
+	overflow: hidden;
+	box-shadow: 0 0 3pt 2pt tomato;
+	position: fixed;
+}
+
+.navigator{
+	display: flex;
+	flex-flow: row;
+	list-style: none;
+	align-items: stretch;
+	padding: 0;
+	margin: 0;
+}
+.navigator li {
+	font-size: 32px;
+	color: tomato;
+	display: inline-flex;
+	align-items: center;
+	background-color: #fff;
+	justify-content: center;
+	transition: background-color .2s ease-in;
+	padding: 0 30px;
+}
+
+.navigator li:hover{
+	background-color: grey;
+	cursor: pointer;
+}
+
+.logo{
+	width: 100px;
+	height: 100%;
+	background-image: url("../images/Favorite_edited.jpg");
+	background-size: 100% 100%;
+}
+
+.content{
+	margin-top: 150px;
 }
