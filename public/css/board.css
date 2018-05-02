@@ -1,0 +1,20 @@
+body{
+    background: 
+        linear-gradient(
+            cyan,
+            transparent
+	    ),
+	    linear-gradient(
+	    	-45deg,
+	    	magenta,
+	    	transparent
+	    ),
+	    linear-gradient(
+	    	45deg,
+	    	yellow,
+	    	transparent
+        );
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
