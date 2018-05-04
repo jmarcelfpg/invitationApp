@@ -16,13 +16,13 @@
         <div class="logo shrinked">
             <div class="uag"></div>
         </div>
-        <nav class="navbar">
+        <nav class="navbar" id="nav">
             <div class="uag wider"></div>
             <div class="logo wider"></div>
             <ul class="navigator">
-                <li>User</li>
-                <li>Admin</li>
-                <li>Logout</li>
+                <li name="profile">Perfil</li>
+                <li class="hidden" name="admin">Admin</li>
+                <li name="logout">Logout</li>
             </ul>
         </nav>
 
@@ -142,6 +142,8 @@
                 </ol>
             </div>
         </div>
+        <script src="js/vendor.js"></script>
+        <script src="js/nav.js"></script>
 </body>
 
 </html>

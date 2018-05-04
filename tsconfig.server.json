@@ -3,13 +3,13 @@
     "compilerOptions": {
         "sourceMap": true,
         "outDir": "./",
-        "sourceRoot": "./src/developmentServer",
+        "rootDir": "./src/developmentServer",
         "noEmit": false,
         "noEmitOnError": true
     },
     "exclude": [
         "./src/public",
         "./__tests__/",
-        ".src/server"
+        "./src/server"
     ]
 }
