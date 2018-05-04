@@ -1,9 +1,10 @@
 const path = require('path');
+const webpack = require('webpack');
 
 // unfinished config for server
 const serverConfig = {
     target: 'node',
-    entry: path.resolve(__dirname, 'src' , 'server', 'index.ts'),
+    entry: path.resolve(__dirname, 'src', 'server', 'index.ts'),
     output: {
         path: path.resolve(__dirname),
         filename: "index.js"
@@ -30,14 +31,17 @@ const serverConfig = {
 const clientConfig = {
     target: 'web',
     entry: {
-        index: path.resolve(__dirname, 'src' , 'public', 'js', 'index.ts'),
-        register: path.resolve(__dirname, 'src' , 'public', 'js', 'register.ts'),
-        board: path.resolve(__dirname, 'src' , 'public', 'js', 'board.ts'),
-        resetPass: path.resolve(__dirname, 'src' , 'public', 'js', 'resetPass.ts')
+        index: path.resolve(__dirname, 'src', 'public', 'js', 'index.ts'),
+        register: path.resolve(__dirname, 'src', 'public', 'js', 'register.ts'),
+        resetPass: path.resolve(__dirname, 'src', 'public', 'js', 'resetPass.ts'),
+        admin: path.resolve(__dirname, 'src', 'public', 'js', 'admin.ts'),
+        profile: path.resolve(__dirname, 'src', 'public', 'js', 'profile.ts'),
+        nav: path.resolve(__dirname, 'src', 'public', 'js', 'nav.ts'),
+        vendor: ["axios"]
     },
     output: {
         path: path.resolve(__dirname, 'public', 'js'),
-        filename: "[name].js"
+        filename: "[name].js",
     },
     devtool: 'sourcemap',
     resolve: {
@@ -54,6 +58,18 @@ const clientConfig = {
                 loader: 'babel-loader'
             }
         ]
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    chunks: "initial",
+                    test: "vendor",
+                    name: "vendor",
+                    enforce: true
+                }
+            }
+        }
     }
 }
 

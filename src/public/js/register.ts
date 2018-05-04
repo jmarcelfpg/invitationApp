@@ -23,7 +23,7 @@ if (registerForm) {
         axios.post('/register', data).then((response) => {
             console.log(response.statusText);
             if (response.statusText === 'OK') {
-                window.location.assign('/login');
+                window.location.assign('/registered');
             }
         });
     });
