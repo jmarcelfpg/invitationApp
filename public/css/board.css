@@ -49,6 +49,10 @@ a{
 	padding: 0;
 	margin: 0;
 }
+.navigator .hidden{
+	display: none;
+}
+
 .navigator li {
 	flex: 1 1 0px;
 	font-size: 32px;
@@ -117,6 +121,40 @@ a{
 	height: 100%;
 	background-image: url("../images/uagIcon.jpg");
 	background-size: 100% 100%;
+}
+
+.userTable{
+	width: 100%;
+	text-align: center;
+	border: none;
+	border-collapse: collapse;
+}
+
+.userTable thead{
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+
+.userTable td{
+	border: 1px solid black;
+	background-color: grey;
+}
+
+.users td{
+	color: black;
+	background-color: white;
+}
+
+.buttons{
+	display: flex;
+}
+
+button{
+	flex: 1 1 0px;
+	color: seagreen;
+    font-size: 20px;
+    height: 10%;
 }
 
 @media only screen and (max-width: 680px){
