@@ -13,12 +13,14 @@ if (registerForm) {
         const EMAILCONFIRM = 'emailConfirm';
         const PASSWORD = 'password';
         const PASSWORDCONFIRM = 'passwordConfirm';
+        const USERNAME = 'userName';
         const data = {
             confirmation: (registerForm.elements.namedItem(CONFIRMATION) as HTMLSelectElement).value,
             contact: (registerForm.elements.namedItem(CONTACT) as HTMLInputElement).value,
             email: (registerForm.elements.namedItem(EMAIL) as HTMLInputElement).value,
             name: (registerForm.elements.namedItem(NAME) as HTMLInputElement).value,
             password: (registerForm.elements.namedItem(PASSWORD) as HTMLInputElement).value,
+            userName: (registerForm.elements.namedItem(USERNAME) as HTMLInputElement).value,
         };
         axios.post('/register', data).then((response) => {
             console.log(response.statusText);
