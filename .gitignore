@@ -7,6 +7,6 @@ public/js
 ./server
 testenv.js
 .env
-plugins
+./plugins
 index.js
 index.js.map
