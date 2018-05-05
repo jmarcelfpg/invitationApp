@@ -41,7 +41,22 @@ app.post('/register', (req, res, next) => {
     console.log(lastName);
     console.log(contact);
     console.log(confirmation);
-    res.send('Hi').status(200);
+    /* transporter.sendMail({
+        subject: 'Message',
+        text: `confirmation Email`,
+        to: email,
+    }); */
+    res.send(true).status(200);
+});
+app.post('/resetPass', (req, res, next) => {
+    const email = req.body.email;
+    console.log(email);
+    /* transporter.sendMail({
+        subject: 'Message',
+        text: `reset password Email`,
+        to: email,
+    }); */
+    res.send(true).status(200);
 });
 app.post('/login', (req, res, next) => {
     const email = req.body.email;

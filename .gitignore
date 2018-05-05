@@ -1,4 +1,7 @@
-.vscode
+/.vscode
 node_modules
 package-lock.json
 info.txt
+/googleapis
+testenv.js
+.env
