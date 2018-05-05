@@ -31,12 +31,12 @@ const serverConfig = {
 const clientConfig = {
     target: 'web',
     entry: {
-        index: path.resolve(__dirname, 'src', 'public', 'js', 'index.ts'),
-        register: path.resolve(__dirname, 'src', 'public', 'js', 'register.ts'),
-        resetPass: path.resolve(__dirname, 'src', 'public', 'js', 'resetPass.ts'),
-        admin: path.resolve(__dirname, 'src', 'public', 'js', 'admin.ts'),
-        profile: path.resolve(__dirname, 'src', 'public', 'js', 'profile.ts'),
-        nav: path.resolve(__dirname, 'src', 'public', 'js', 'nav.ts'),
+        index: path.resolve(__dirname, 'src', 'public', 'ts', 'index.ts'),
+        register: path.resolve(__dirname, 'src', 'public', 'ts', 'register.ts'),
+        resetPass: path.resolve(__dirname, 'src', 'public', 'ts', 'resetPass.ts'),
+        admin: path.resolve(__dirname, 'src', 'public', 'ts', 'admin.ts'),
+        profile: path.resolve(__dirname, 'src', 'public', 'ts', 'profile.ts'),
+        nav: path.resolve(__dirname, 'src', 'public', 'ts', 'nav.ts'),
         vendor: ["axios"]
     },
     output: {
