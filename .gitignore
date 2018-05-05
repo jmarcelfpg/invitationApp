@@ -10,4 +10,4 @@ testenv.js
 /plugins
 /index.js
 /index.js.map
-typings.d.ts
+/db
