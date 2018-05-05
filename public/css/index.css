@@ -1,0 +1,73 @@
+body{
+    height: 100vh;
+    widows: 100vw;
+    display: flex;
+	flex-flow: row;
+	justify-content: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-image: url("../images/80s.jpg");
+}
+
+.login{
+    height: 70vh;
+    width: 40vw;
+    color: springgreen;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-flow: column;
+    padding: 50px;
+    font-size: 2rem;
+    text-shadow: 1px 1px 1px black;
+}
+
+.wrapper{
+	display: flex;
+    flex-flow: column;
+    justify-content: center;
+    margin-right: 35%;
+}
+
+a{
+    color: cyan;
+}
+::placeholder{
+    color: powderblue;
+}
+
+input{
+    color: cyan;
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid grey;
+    padding: 0 10px;
+    height: 10%;
+}
+
+input:-webkit-autofill{
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+button{
+    color: seagreen;
+    font-size: 20px;
+    height: 10%;
+    width: 50%;
+    border-radius: 0 50px 0 50px;
+}
+
+@media only screen and (max-width: 720px){
+
+    .wrapper{
+        margin-right: 0;
+    }
+
+    .login{
+        height: 80vh;
+        width: 60vw;
+    }
+}

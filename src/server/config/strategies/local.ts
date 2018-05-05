@@ -2,9 +2,9 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import User from '../../models/user';
 
-export default function () {
-    passport.use(new LocalStrategy( function (username, password, done) {
-        User.findOne({username: username })
+export default function() {
+    passport.use(new LocalStrategy( (username, password, done) => {
+        User.findOne({  username: username })
             .then((user) => {
                 user
                 ? user.authenticate(password)

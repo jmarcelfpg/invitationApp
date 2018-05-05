@@ -1,4 +1,12 @@
-.vscode
-public/js
-node_modules/**/*
+/.vscode
+node_modules
 package-lock.json
+info.txt
+/googleapis
+/public/js
+/server
+testenv.js
+.env
+/plugins
+/index.js
+/index.js.map

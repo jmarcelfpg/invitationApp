@@ -1,18 +1,18 @@
-import passport from 'passport';
 import mongoose from 'mongoose';
+import passport from 'passport';
 import User, { UserDocumentType } from '../models/user';
 import loadStrategy from './strategies/local';
 
-export default async function () {
-    passport.serializeUser<UserDocumentType, string>(function (user, done) {
+export default async function() {
+    passport.serializeUser<UserDocumentType, string>((user, done) => {
         done(null, user.id);
     });
 
-    passport.deserializeUser<UserDocumentType, string>(function (id, done) {
+    passport.deserializeUser<UserDocumentType, string>((id, done) => {
         User.findOne({
-            _id: id
-        }, '-password -salt', function (err, user) {
-            if (user){
+            _id: id,
+        }, '-password -salt', (err, user) => {
+            if (user) {
                 done(err, user);
             }
         });

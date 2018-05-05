@@ -1,0 +1,87 @@
+body{
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	color: white;
+	background-image: url("../images/173315.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    font-size: 20px;
+}
+
+.wrapper{
+	width: 80%;
+	display: flex;
+    flex-flow: column;
+    margin-top: 20px;
+}
+
+legend{
+    font-size: 30px;
+}
+
+form{
+    width: 80%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    text-shadow: 1px 1px 3px black;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 25px;
+}
+
+a{
+    color: cyan;
+    text-shadow: 1px 1px 1px black;
+}
+
+.links{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input, select{
+    height: 30px;
+    font-size: 15px;
+}
+
+.row{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.column{
+    width: 45%;
+    display: flex;
+    flex-flow: column;
+}
+
+.button{
+    height: 50px;
+    color: white;
+    background-color: green;
+    border: 1px solid black;
+    box-shadow: 0 0 3pt red;
+    font-size: 25px;
+}
+
+@media only screen and (max-width: 680px){
+    .row{
+        flex-flow: column;
+    }
+
+    .column{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 450px){
+    .links{
+        flex-flow: column;
+        height: 100px;
+    }
+}
