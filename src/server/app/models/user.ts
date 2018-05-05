@@ -5,9 +5,10 @@ import crypto from 'crypto';
 
 type UserType = Base.IUser & { salt: any };
 const userSchema: UserType = {
+    username: { type: String, unique: true, trim: true },
+    email: { type: String, unique: true, lowercase: true, trim: true },
     comments: String,
     confirmation: { type: ObjectId, ref: "Confirmation" },
-    email: { type: String, unique: true, lowercase: true, trim: true },
     firstName: { type: String, trim: true },
     lastName: { type: String, trim: true },
     password: String,
@@ -15,6 +16,7 @@ const userSchema: UserType = {
     role: { type: Number, trim: true },
     salt: String,
     visits: Number,
+    provider: String
 };
 const UserSchema = new Schema(
     (userSchema as UserType),
