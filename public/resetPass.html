@@ -8,6 +8,12 @@
     <link rel="shortcut icon" href="images/uagIcon.jpg" type="image/x-icon">
 </head>
 <body>
-    <script src=""></script>
+    <form action="/resetPass" method="POST" id="resetPass">
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" placeholder="ingresa tu email registrado">
+        <input type="submit" value="Enviar">
+    </form>
+    <script src="js/vendor.js"></script>
+    <script src="js/resetPass.js"></script>
 </body>
 </html>
