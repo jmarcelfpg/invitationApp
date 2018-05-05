@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 import passport from 'passport';
-import User, { UserDocumentType } from '../models/user';
+import User, { UserDocumentType } from '../app/models/user';
 import loadStrategy from './strategies/local';
 
-export default async function() {
+export default function() {
     passport.serializeUser<UserDocumentType, string>((user, done) => {
         done(null, user.id);
     });
@@ -18,5 +18,4 @@ export default async function() {
         });
     });
     loadStrategy();
-    return true;
 }

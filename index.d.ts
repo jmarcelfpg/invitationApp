@@ -1,5 +1,6 @@
 declare namespace Base {
     export interface IUser {
+        username: any;
         firstName: any;
         lastName: any;
         email: any;
@@ -9,6 +10,7 @@ declare namespace Base {
         phone: any;
         comments: any;
         visits: any;
+        provider: any;
     }
     export interface IConfirmation {
         type: any;
