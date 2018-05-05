@@ -3,14 +3,5 @@ node_modules
 package-lock.json
 info.txt
 /googleapis
-/public/js
-/server
 testenv.js
-dev.env
-/plugins
-/index*
-/index*
-/db/
-/routes
-/config
-/app
+.env
