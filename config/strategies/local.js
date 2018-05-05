@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const passport_1 = __importDefault(require("passport"));
 const passport_local_1 = require("passport-local");
-const user_1 = __importDefault(require("../../app/models/user"));
+const user_1 = __importDefault(require("../../models/user"));
 function default_1() {
-    passport_1.default.use(new passport_local_1.Strategy((username, password, done) => {
+    passport_1.default.use(new passport_local_1.Strategy(function (username, password, done) {
         user_1.default.findOne({ username: username })
             .then((user) => {
             user
