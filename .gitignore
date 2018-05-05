@@ -5,3 +5,7 @@ info.txt
 /googleapis
 testenv.js
 .env
+/src
+tsconfig.*
+/typings*
+/webpack*
