@@ -1,19 +1,12 @@
 import mongoose from 'mongoose';
+(mongoose as any).Promise = global.Promise;
 
-export default async function() {// mongoose
-    (mongoose as any).Promise = global.Promise;
-    const connection = mongoose.connect(
-        (process.env.MONGODB_URI as string),
-        { useMongoClient: true },
-    );
-
-    connection
-    .then(() => {
-        console.log('Connected to MongoDB');
-    })
-    .catch((e) => {
-        console.log('connection error:');
-    });
-
-    return true;
+export default async function () {
+    if (process.env.MONGODB_URI) {
+        return mongoose.connect(
+            process.env.MONGODB_URI
+        )
+    } else {
+        throw new Error("cannot connect to the database no MONGODB_URI defined");
+    }
 }
