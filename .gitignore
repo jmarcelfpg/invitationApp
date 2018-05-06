@@ -8,8 +8,8 @@ info.txt
 testenv.js
 dev.env
 /plugins
-/index.js
-/index.js.map
+/index*
+/index*
 /db
 /routes
 /config

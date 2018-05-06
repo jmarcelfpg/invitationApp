@@ -6,10 +6,10 @@
   "scripts": {
     "test": "jest",
     "start": "node index.js",
-    "start-development": "nodemon dist/server --watch dist",
+    "start-development": "nodemon indexdev.js --watch dist",
     "build": "webpack && tsc -p tsconfig.server.json",
     "build-watch": "concurrently \"mongod\" \"webpack -w\" \"tsc -p tsconfig.server.json -w\" \"nodemon --watch index.js --watch public\"",
-    "build-devwatch": "concurrently \"mongod \" \"webpack -w\" \"tsc -p tsconfig.developmentServer.json -w\" \"nodemon -r dotenv/config --watch index.js --watch public\"",
+    "build-devwatch": "concurrently \"mongod \" \"webpack -w\" \"tsc -p tsconfig.developmentServer.json -w\" \"nodemon ./indexdev.js -r dotenv/config --watch index.js --watch public\"",
     "build-server": "tsc -p tsconfig.server.json",
     "build-serverWatch": "tsc -p tsconfig.server.json -w",
     "build-client": "webpack",
