@@ -6,7 +6,7 @@ info.txt
 /public/js
 /server
 testenv.js
-.env
+dev.env
 /plugins
 /index.js
 /index.js.map

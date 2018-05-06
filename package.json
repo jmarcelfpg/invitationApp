@@ -9,8 +9,12 @@
     "start-development": "nodemon dist/server --watch dist",
     "build": "webpack && tsc -p tsconfig.server.json",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "build-watch": "concurrently \"mongod\" \"webpack -w\" \"tsc -p tsconfig.server.json -w\" \"nodemon --watch index.js --watch public\"",
 =======
+=======
+    "build-devwatch": "concurrently \"mongod \" \"webpack -w\" \"tsc -p tsconfig.developmentServer.json -w\" \"nodemon -r dotenv/config --watch index.js --watch public\"",
+>>>>>>> updating the scafolding
     "build-watch": "concurrently \"mongod \" \"webpack -w\" \"tsc -p tsconfig.server.json -w\" \"nodemon -r dotenv/config --watch index.js --watch public\"",
 >>>>>>> new routes and db almost ready
     "build-server": "tsc -p tsconfig.server.json",
