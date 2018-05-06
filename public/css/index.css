@@ -69,5 +69,22 @@ button{
     .login{
         height: 80vh;
         width: 60vw;
+        padding: 20px;
+    }
+}
+
+@media only screen and (max-height: 510px) {
+    .login{
+        height: 90vh;
+        width: 90vw;
+        font-size: 1.5rem;
+        padding: 20px;
+    }
+
+    input{
+        font-size: 1rem;
+        border-bottom: 2px solid grey;
+        padding: 0 8px;
+        height: 10%;
     }
 }

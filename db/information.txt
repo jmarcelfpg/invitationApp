@@ -1,0 +1,7 @@
+animetron@admin
+WhTGYdWgd9BmEefs
+mongodb://animetron:WhTGYdWgd9BmEefs@cluster0-shard-00-00-letyq.mongodb.net:27017,cluster0-shard-00-01-letyq.mongodb.net:27017,cluster0-shard-00-02-letyq.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin
+
+app@admin
+OqcJ814oG0JQY1Gh
+mongodb://app:OqcJ814oG0JQY1Gh@cluster0-shard-00-00-letyq.mongodb.net:27017,cluster0-shard-00-01-letyq.mongodb.net:27017,cluster0-shard-00-02-letyq.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin
