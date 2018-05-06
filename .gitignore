@@ -12,3 +12,5 @@ dev.env
 /index.js.map
 /db
 /routes
+/config
+/app
