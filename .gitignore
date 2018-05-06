@@ -12,3 +12,8 @@ dev.env
 /index.js.map
 /db
 /routes
+<<<<<<< HEAD
+=======
+/config
+/app
+>>>>>>> rebased with master
