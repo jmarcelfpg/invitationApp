@@ -10,7 +10,7 @@ dev.env
 /plugins
 /index*
 /index*
-/db
+/db/
 /routes
 /config
 /app
