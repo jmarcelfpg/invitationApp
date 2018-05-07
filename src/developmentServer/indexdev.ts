@@ -77,12 +77,12 @@ if (app.get('env') === 'development') {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/logout', routes.User.logout);
-app.get('/board', routes.board);
+app.get('/', routes.board);
 app.get('/admin', authorizeAdmin, routes.admin);
 app.get('/profile', authorize, routes.profile);
 app.get('/resetPass', routes.resetPass);
 app.get('/registered', routes.registered);
-app.get('/register', routes.register);
+app.get('/signup', routes.signup);
 app.get('/registeradmin', routes.registerAdmin);
 
 // Rest routes
@@ -112,7 +112,7 @@ app.post('/confirmation', (req, res, next) => {
     console.log(confirmation);
     res.send(confirmation).status(200);
 });
-app.use('*', (req, res, next) => { res.sendFile(path.join(__dirname, 'public', 'index.html')); });
+app.use('*', (req, res, next) => { res.sendFile(path.join(__dirname, 'public', 'signin.html')); });
 
 // Catching all the routes
 app.all('*', (req, res) => {

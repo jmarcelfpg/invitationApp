@@ -2,7 +2,7 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import User from '../../app/models/user';
 
-export default function () {
+export default function() {
     passport.use(new LocalStrategy((username, password, done) => {
         User.findOne({ username: username })
             .then((user) => {

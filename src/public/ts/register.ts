@@ -14,19 +14,20 @@ if (registerForm) {
         const PASSWORD = 'password';
         const PASSWORDCONFIRM = 'passwordConfirm';
         const USERNAME = 'userName';
-        const data = {
+        const values = {
+            comments: '',
             confirmation: (registerForm.elements.namedItem(CONFIRMATION) as HTMLSelectElement).value,
-            contact: (registerForm.elements.namedItem(CONTACT) as HTMLInputElement).value,
             email: (registerForm.elements.namedItem(EMAIL) as HTMLInputElement).value,
-            name: (registerForm.elements.namedItem(NAME) as HTMLInputElement).value,
+            firstName: (registerForm.elements.namedItem(NAME) as HTMLInputElement).value,
+            lastName: (registerForm.elements.namedItem(LASTNAME) as HTMLInputElement).value,
             password: (registerForm.elements.namedItem(PASSWORD) as HTMLInputElement).value,
+            phone: (registerForm.elements.namedItem(CONTACT) as HTMLInputElement).value,
+            role: 1,
             userName: (registerForm.elements.namedItem(USERNAME) as HTMLInputElement).value,
+            visits: 0,
         };
-        axios.post('/register', data).then((response) => {
-            console.log(response.statusText);
-            if (response.statusText === 'OK') {
-                window.location.assign('/registered');
-            }
+        axios.post('/signup', values).then(({data}) => {
+            console.log(data);
         });
     });
 }
