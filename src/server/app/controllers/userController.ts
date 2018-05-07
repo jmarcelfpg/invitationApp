@@ -1,10 +1,9 @@
-import { User } from '../models/user';
+import User from '../models/user';
 import { Request, Response, NextFunction, RequestHandler } from 'express-serve-static-core';
 import Controller from './abstractController';
 import { MongoError } from 'mongodb';
 
-type MongooseError = MongoError &
-    { errors: { [index: string]: { message: string } } }
+type MongooseError = MongoError & { errors: { [index: string]: { message: string } } }
 export default class UserController extends Controller {
     public model = User
 
