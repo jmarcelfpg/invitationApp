@@ -3,6 +3,8 @@ import { MongoError } from 'mongodb';
 import path from 'path';
 import { User } from '../models/user';
 import Controller from './abstractController';
+import { log } from 'util';
+import { model } from 'mongoose';
 
 type MongooseError = MongoError &
     { errors: { [index: string]: { message: string } } }
@@ -11,16 +13,47 @@ export default class UserController extends Controller {
 
     public renderBoard: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
         if (!req.user) {
+            return res.redirect('/signin');
+        } else {
             // res.sendFile(path.join(__dirname, '..', '..', 'public', 'signin.html'));
             // Use the 'response' object to render the signin page
             res.render('board', {
-                // Set the page title variable
-                title: 'Board',
                 // Set the flash message variable
                 messages: req.flash('error') || req.flash('info'),
+                // Set the page title variable
+                title: 'Board',
             });
+        }
+    }
+
+    public renderProfile: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
+        if (!req.user) {
+            return res.redirect('/signin');
         } else {
-            return res.redirect('/');
+            // res.sendFile(path.join(__dirname, '..', '..', 'public', 'signin.html'));
+            // Use the 'response' object to render the signin page
+            res.render('profile', {
+                // Set the flash message variable
+                messages: req.flash('error') || req.flash('info'),
+                // Set the page title variable
+                title: 'Board',
+            });
+        }
+    }
+
+    public renderAdmin: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
+        if (!req.user) {
+            return res.redirect('/signin');
+        } else {
+            console.log(req.user);
+            // res.sendFile(path.join(__dirname, '..', '..', 'public', 'signin.html'));
+            // Use the 'response' object to render the signin page
+            res.render('admin', {
+                // Set the flash message variable
+                messages: req.flash('error') || req.flash('info'),
+                // Set the page title variable
+                title: 'Board',
+            });
         }
     }
 
@@ -29,10 +62,10 @@ export default class UserController extends Controller {
             // res.sendFile(path.join(__dirname, '..', '..', 'public', 'signin.html'));
             // Use the 'response' object to render the signin page
             res.render('signin', {
-                // Set the page title variable
-                title: 'Sign-in Form',
                 // Set the flash message variable
                 messages: req.flash('error') || req.flash('info'),
+                // Set the page title variable
+                title: 'Sign-in Form',
             });
         } else {
             return res.redirect('/');
@@ -45,6 +78,22 @@ export default class UserController extends Controller {
         if (!req.user) {
             // Use the 'response' object to render the signup page
             res.render('signup', {
+                // Set the flash message variable
+                messages: req.flash('error'),
+                // Set the page title variable
+                title: 'Sign-up Form',
+            });
+        } else {
+            return res.redirect('/');
+        }
+    }
+    // Create a new controller method that renders the signup page
+    public renderSignupAdmin: RequestHandler = (req, res, next) => {
+        // If user is not connected render the signup page,
+        // otherwise redirect the user back to the main application page
+        if (!req.user) {
+            // Use the 'response' object to render the signup page
+            res.render('signupAdmin', {
                 // Set the flash message variable
                 messages: req.flash('error'),
                 // Set the page title variable
@@ -85,11 +134,11 @@ export default class UserController extends Controller {
                     if (err) return console.log(err);
 
                     // Redirect the user back to the main application page
-                    return res.redirect('/');
+                    return res.redirect('/signin');
                 });
             });
         } else {
-            return res.send(true);
+            return res.redirect('/signin');
         }
     }
     // Create a new controller method for signing out
@@ -97,12 +146,43 @@ export default class UserController extends Controller {
         // Use the Passport 'logout' method to logout
         req.logout();
         // Redirect the user back to the main application page
-        res.redirect('/');
+        res.redirect('/signin');
+    }
+    // Create a new controller method for send role
+    public sendRole: RequestHandler = (req, res) => {
+        if (req.user) {
+            res.send(req.user.role.toString());
+        }
+    }
+    // Create a new controller method for send users
+    public sendUsers: RequestHandler = (req, res) => {
+        if (req.user) {
+            User.find()
+                .then((Users) => {
+                    const users = Users.map((user) => {
+                        const { firstName, lastName, confirmation, visits } = user;
+                        return { firstName, lastName, confirmation, visits };
+                    });
+                    res.send(users);
+                })
+                .catch((err) => {
+                    // If an error occurs, use flash messages to report the error
+                    if (err) {
+                        // Use the error handling method to get the error message
+                        var message = this.getErrorMessage(err);
+                        // Set the flash messages
+                        req.flash('error', message);
+
+                        // Redirect the user back to the signup page
+                        return res.send('Error');
+                    }
+                });
+        }
     }
     // Create a new error handling controller method
     private getErrorMessage = function ({ code, errors }: MongooseError) {
         const error = errors ? Object.values(errors).find((value) => !!value.message)
-        : undefined;
+            : undefined;
         return code
             ? (code === 11000 || code === 11001)
                 ? 'Username already exists' : 'Something went wrong'

@@ -31,28 +31,17 @@ UserSchema.virtual('fullName')
         this.firstName = splitName[0] || '';
         this.lastName = splitName[1] || '';
     });
-UserSchema.pre<UserSchemaType>('save', async function () {
+UserSchema.pre<UserSchemaType>('save', function (next) {
     if (this.password) {
         this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+        debugger;
         this.password = this.hashPassword(this.password);
     }
+    next();
 });
 
-UserSchema.methods.findByUserName = async function (username: string) {
-    let user;
-    await User.findOne({ username })
-        .then((userfinded) => {
-            user = userfinded;
-        })
-        .catch((err) => { console.log(err); });
-    return user;
-};
-UserSchema.methods.hashPassword = async function (password: string) {
-    let key;
-    await crypto.pbkdf2(password, this.salt, 10000, 64, 'sha512', (err, derivedKey) => {
-        key = derivedKey.toString('base64');
-    });
-    return key;
+UserSchema.methods.hashPassword = function (password: string) {
+    return crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha512').toString('base64');
 };
 UserSchema.methods.authenticate = function (password: string) {
     return this.password === this.hashPassword(password);
