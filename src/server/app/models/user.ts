@@ -1,15 +1,15 @@
-import { Document, model, Model, Schema } from 'mongoose';
-import * as passport from 'passport';
-const { ObjectId } = Schema.Types;
+import { Document, model, Model, Schema, SchemaDefinition } from 'mongoose';
+const { ObjectId, String, Number } = Schema.Types;
 import crypto from 'crypto';
-import async from './../../config/express';
+import { confirmationSchema } from './confirmation';
+import { feeSchema } from './fee';
 
 type UserType = Base.IUser & { salt: any };
 const userSchema: UserType = {
     comments: String,
-    // confirmation: { type: ObjectId, ref: "Confirmation" },
-    confirmation: { type: Number },
+    confirmation: confirmationSchema,
     email: { type: String, unique: true, lowercase: true, trim: true },
+    fee: feeSchema,
     firstName: { type: String, trim: true },
     lastName: { type: String, trim: true },
     password: String,
@@ -62,5 +62,5 @@ export type UserDocumentType = UserType & Document;
 type UserSchemaType = UserDocumentType & UserSchemaMethods;
 type UserModelType = Model<UserSchemaType>;
 
-export const User: UserModelType = model<UserSchemaType, UserModelType>('User', UserSchema);
+const User: UserModelType = model<UserSchemaType, UserModelType>('User', UserSchema);
 export default User;

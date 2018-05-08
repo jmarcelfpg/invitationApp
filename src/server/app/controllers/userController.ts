@@ -4,8 +4,7 @@ import { Transporter } from 'nodemailer';
 import { User } from '../models/user';
 import Controller from './abstractController';
 
-type MongooseError = MongoError &
-    { errors: { [index: string]: { message: string } } }
+type MongooseError = MongoError & { errors: { [index: string]: { message: string } } }
 export default class UserController extends Controller {
     public model = User;
 
