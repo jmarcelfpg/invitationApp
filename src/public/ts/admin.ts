@@ -8,21 +8,21 @@ if (usersTable) {
         if (users) {
             const confirmation = ['Confirmado', 'Pendiente', 'Rechazada', 'Cancelado'];
             const fragment = new DocumentFragment();
-            users.forEach((user: { name: string; lastname: string; confirmation: number; fee: number }) => {
+            users.forEach((user: { firstName: string; lastName: string; confirmation: number; visits: number }) => {
                 console.log('spliting users');
                 const tr = document.createElement('tr');
                 let td = document.createElement('td');
-                td.textContent = user.name;
+                td.textContent = user.firstName;
                 tr.appendChild(td);
                 td = document.createElement('td');
-                td.textContent = user.lastname;
+                td.textContent = user.lastName;
                 tr.appendChild(td);
                 td = document.createElement('td');
                 td.textContent = confirmation[user.confirmation];
                 tr.appendChild(td);
                 td = document.createElement('td');
                 td.setAttribute('contentEditable', 'true');
-                td.textContent = `$${user.fee.toString()}`;
+                td.textContent = `$${user.visits.toString()}`;
                 tr.appendChild(td);
                 fragment.appendChild(tr);
             });

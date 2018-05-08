@@ -5,7 +5,7 @@ const liAdmin = document.getElementsByName('admin')[0];
 
 if (liAdmin) {
     axios.get('/role').then((response) => {
-        if (response.data === 'admin') {
+        if (response.data === 0) {
             liAdmin.setAttribute('class', '');
         }
     });

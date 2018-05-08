@@ -1,11 +1,13 @@
 import nodemailer from 'nodemailer';
 
-const transporter = nodemailer.createTransport({
-    auth: {
-        pass: process.env.PASSEMAIL,
-        user: process.env.APPEMAIL,
-    },
-    from: process.env.APPEMAIL,
-    service: 'gmail',
-});
-export default transporter;
+export default function() {
+    const transporter = nodemailer.createTransport({
+        auth: {
+            pass: process.env.PASS_EMAIL,
+            user: process.env.APP_EMAIL,
+        },
+        from: process.env.APP_EMAIL,
+        service: 'gmail',
+    });
+    return transporter;
+}
