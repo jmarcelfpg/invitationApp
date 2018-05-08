@@ -17,10 +17,10 @@ export const resetPass: RequestHandler = (req, res, next) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'resetPass.html'));
 };
 export const registered: RequestHandler = (req, res, next) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'registered.html'));
+    res.sendFile(path.join(__dirname, '..', '..', 'public', 'registered.html'));
 };
-export const register: RequestHandler = (req, res, next) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'register.html'));
+export const signup: RequestHandler = (req, res, next) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'signup.html'));
 };
 export const registerAdmin: RequestHandler = (req, res, next) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'registerAdmin.html'));

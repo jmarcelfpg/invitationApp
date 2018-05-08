@@ -31,7 +31,7 @@ const serverConfig = {
 const clientConfig = {
     target: 'web',
     entry: {
-        index: path.resolve(__dirname, 'src', 'public', 'ts', 'index.ts'),
+        signin: path.resolve(__dirname, 'src', 'public', 'ts', 'index.ts'),
         register: path.resolve(__dirname, 'src', 'public', 'ts', 'register.ts'),
         resetPass: path.resolve(__dirname, 'src', 'public', 'ts', 'resetPass.ts'),
         admin: path.resolve(__dirname, 'src', 'public', 'ts', 'admin.ts'),
