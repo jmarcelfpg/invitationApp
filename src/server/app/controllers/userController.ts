@@ -1,7 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express-serve-static-core';
 import { MongoError } from 'mongodb';
 import { Transporter } from 'nodemailer';
-import { User } from '../models/user';
+import User from '../models/user';
 import Controller from './abstractController';
 
 type MongooseError = MongoError & { errors: { [index: string]: { message: string } } }
@@ -124,6 +124,16 @@ export default class UserController extends Controller {
             if (!req.user) {
                 // Create a new 'User' model instance
                 const user = new User(req.body);
+                user.comments = '';
+                user.visits = 0;
+                user.confirmation.current = {
+                    feedback: 'initial State',
+                    status: req.body.confirmation,
+                };
+                user.fee.current = {
+                    feedback: 'initial fee',
+                    status: 0,
+                };
                 var message = null;
 
                 // Set the user provider property
@@ -131,6 +141,7 @@ export default class UserController extends Controller {
 
                 // Try saving the new user document
                 user.save((err: MongooseError) => {
+                    debugger;
                     // If an error occurs, use flash messages to report the error
                     if (err) {
                         // Use the error handling method to get the error message
@@ -148,12 +159,12 @@ export default class UserController extends Controller {
                         to: user.email,
                     });
                     // If the user was created successfully use the Passport 'login' method to login
-                    req.login(user, function(err) {
+                    req.login(user, function (err) {
                         // If a login error occurs move to the next middleware
                         if (err) { return console.log(err); }
 
                         // Redirect the user back to the main application page
-                        return res.redirect('/signin');
+                        return res.redirect('/board');
                     });
                 });
             } else {
