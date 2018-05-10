@@ -16,6 +16,22 @@ export default class UserController extends Controller {
             res.render('board', {
                 // Set the flash message variable
                 messages: req.flash('error') || req.flash('info'),
+                // setting the navigation tabs
+                navigator: [{
+                    class: 'unhidden',
+                    name: 'profile',
+                    text: 'Perfil',
+                },
+                {
+                    class: 'hidden',
+                    name: 'admin',
+                    text: 'admin',
+                },
+                {
+                    class: 'unhidden',
+                    name: 'logout',
+                    text: 'Logout',
+                }],
                 // Set the page title variable
                 title: 'Board',
             });
@@ -26,13 +42,33 @@ export default class UserController extends Controller {
         if (!req.user) {
             return res.redirect('/signin');
         } else {
-            // res.sendFile(path.join(__dirname, '..', '..', 'public', 'signin.html'));
+            const confirm = [
+                'confirmado', 'dejado pendiente', 'rechazado', 'cancelado',
+            ][req.user.confirmation.current.status];
             // Use the 'response' object to render the signin page
             res.render('profile', {
+                // confirmation status
+                confirm,
                 // Set the flash message variable
                 messages: req.flash('error') || req.flash('info'),
+                // setting the navigation tabs
+                navigator: [{
+                    class: 'unhidden',
+                    name: 'board',
+                    text: 'Programa',
+                },
+                {
+                    class: 'hidden',
+                    name: 'admin',
+                    text: 'admin',
+                },
+                {
+                    class: 'unhidden',
+                    name: 'logout',
+                    text: 'Logout',
+                }],
                 // Set the page title variable
-                title: 'Board',
+                title: 'Profile',
             });
         }
     }
@@ -47,6 +83,23 @@ export default class UserController extends Controller {
             res.render('admin', {
                 // Set the flash message variable
                 messages: req.flash('error') || req.flash('info'),
+                // setting the navigation tabs
+                navigator: [
+                    {
+                        class: 'unhidden',
+                        name: 'board',
+                        text: 'Programa',
+                    },
+                    {
+                        class: 'unhidden',
+                        name: 'profile',
+                        text: 'Perfil',
+                    },
+                    {
+                        class: 'unhidden',
+                        name: 'logout',
+                        text: 'Logout',
+                    }],
                 // Set the page title variable
                 title: 'Board',
             });

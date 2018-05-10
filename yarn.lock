@@ -703,6 +703,10 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
+"@types/handlebars@^4.0.37":
+  version "4.0.37"
+  resolved "https://registry.yarnpkg.com/@types/handlebars/-/handlebars-4.0.37.tgz#a3bc3eba0c0f03f753cac00841a5b21e26a02c03"
+
 "@types/mailgun-js@^0.16.0":
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/@types/mailgun-js/-/mailgun-js-0.16.0.tgz#ff697c03b3cc3eb44e6e94cce218358417a5fd85"
