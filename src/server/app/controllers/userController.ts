@@ -117,7 +117,7 @@ export default class UserController extends Controller {
                 title: 'Sign-in Form',
             });
         } else {
-            return res.redirect('/');
+            return res.redirect('/board');
         }
     }
     // Create a new controller method that renders the signup page
@@ -133,7 +133,7 @@ export default class UserController extends Controller {
                 title: 'Sign-up Form',
             });
         } else {
-            return res.redirect('/');
+            return res.redirect('/board');
         }
     }
     // Create a new controller method that renders the forgote Pass page
@@ -165,7 +165,7 @@ export default class UserController extends Controller {
                 title: 'Sign-up Form',
             });
         } else {
-            return res.redirect('/');
+            return res.redirect('/board');
         }
     }
     // Create a new controller method that creates new 'regular' users
@@ -194,7 +194,6 @@ export default class UserController extends Controller {
 
                 // Try saving the new user document
                 user.save((err: MongooseError) => {
-                    debugger;
                     // If an error occurs, use flash messages to report the error
                     if (err) {
                         // Use the error handling method to get the error message
@@ -260,8 +259,11 @@ export default class UserController extends Controller {
             User.find()
                 .then((Users) => {
                     const users = Users.map((user) => {
-                        const { firstName, lastName, confirmation, visits } = user;
-                        return { firstName, lastName, confirmation, visits };
+                        const { firstName, lastName, visits, confirmation: {
+                            current: { status } },
+                            fee: {
+                                current: { ammout } } } = user;
+                        return { firstName, lastName, visits, confirmation: status, fee: ammout };
                     });
                     res.send(users);
                 })
