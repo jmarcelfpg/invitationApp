@@ -1,7 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express-serve-static-core';
 import { MongoError } from 'mongodb';
 import { Transporter } from 'nodemailer';
-import { User } from '../models/user';
+import User from '../models/user';
 import Controller from './abstractController';
 
 type MongooseError = MongoError & { errors: { [index: string]: { message: string } } }
@@ -16,6 +16,22 @@ export default class UserController extends Controller {
             res.render('board', {
                 // Set the flash message variable
                 messages: req.flash('error') || req.flash('info'),
+                // setting the navigation tabs
+                navigator: [{
+                    class: 'unhidden',
+                    name: 'profile',
+                    text: 'Perfil',
+                },
+                {
+                    class: 'hidden',
+                    name: 'admin',
+                    text: 'admin',
+                },
+                {
+                    class: 'unhidden',
+                    name: 'logout',
+                    text: 'Logout',
+                }],
                 // Set the page title variable
                 title: 'Board',
             });
@@ -26,13 +42,33 @@ export default class UserController extends Controller {
         if (!req.user) {
             return res.redirect('/signin');
         } else {
-            // res.sendFile(path.join(__dirname, '..', '..', 'public', 'signin.html'));
+            const confirm = [
+                'confirmado', 'dejado pendiente', 'rechazado', 'cancelado',
+            ][req.user.confirmation.current.status];
             // Use the 'response' object to render the signin page
             res.render('profile', {
+                // confirmation status
+                confirm,
                 // Set the flash message variable
                 messages: req.flash('error') || req.flash('info'),
+                // setting the navigation tabs
+                navigator: [{
+                    class: 'unhidden',
+                    name: 'board',
+                    text: 'Programa',
+                },
+                {
+                    class: 'hidden',
+                    name: 'admin',
+                    text: 'admin',
+                },
+                {
+                    class: 'unhidden',
+                    name: 'logout',
+                    text: 'Logout',
+                }],
                 // Set the page title variable
-                title: 'Board',
+                title: 'Profile',
             });
         }
     }
@@ -47,6 +83,23 @@ export default class UserController extends Controller {
             res.render('admin', {
                 // Set the flash message variable
                 messages: req.flash('error') || req.flash('info'),
+                // setting the navigation tabs
+                navigator: [
+                    {
+                        class: 'unhidden',
+                        name: 'board',
+                        text: 'Programa',
+                    },
+                    {
+                        class: 'unhidden',
+                        name: 'profile',
+                        text: 'Perfil',
+                    },
+                    {
+                        class: 'unhidden',
+                        name: 'logout',
+                        text: 'Logout',
+                    }],
                 // Set the page title variable
                 title: 'Board',
             });
@@ -64,7 +117,7 @@ export default class UserController extends Controller {
                 title: 'Sign-in Form',
             });
         } else {
-            return res.redirect('/');
+            return res.redirect('/board');
         }
     }
     // Create a new controller method that renders the signup page
@@ -80,7 +133,7 @@ export default class UserController extends Controller {
                 title: 'Sign-up Form',
             });
         } else {
-            return res.redirect('/');
+            return res.redirect('/board');
         }
     }
     // Create a new controller method that renders the forgote Pass page
@@ -112,7 +165,7 @@ export default class UserController extends Controller {
                 title: 'Sign-up Form',
             });
         } else {
-            return res.redirect('/');
+            return res.redirect('/board');
         }
     }
     // Create a new controller method that creates new 'regular' users
@@ -124,6 +177,16 @@ export default class UserController extends Controller {
             if (!req.user) {
                 // Create a new 'User' model instance
                 const user = new User(req.body);
+                user.comments = '';
+                user.visits = 0;
+                user.confirmation.current = {
+                    feedback: 'initial State',
+                    status: req.body.confirmation,
+                };
+                user.fee.current = {
+                    feedback: 'initial fee',
+                    status: 0,
+                };
                 var message = null;
 
                 // Set the user provider property
@@ -148,12 +211,12 @@ export default class UserController extends Controller {
                         to: user.email,
                     });
                     // If the user was created successfully use the Passport 'login' method to login
-                    req.login(user, function(err) {
+                    req.login(user, function (err) {
                         // If a login error occurs move to the next middleware
                         if (err) { return console.log(err); }
 
                         // Redirect the user back to the main application page
-                        return res.redirect('/signin');
+                        return res.redirect('/board');
                     });
                 });
             } else {
@@ -196,8 +259,11 @@ export default class UserController extends Controller {
             User.find()
                 .then((Users) => {
                     const users = Users.map((user) => {
-                        const { firstName, lastName, confirmation, visits } = user;
-                        return { firstName, lastName, confirmation, visits };
+                        const { firstName, lastName, visits, confirmation: {
+                            current: { status } },
+                            fee: {
+                                current: { ammout } } } = user;
+                        return { firstName, lastName, visits, confirmation: status, fee: ammout };
                     });
                     res.send(users);
                 })

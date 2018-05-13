@@ -34,7 +34,6 @@ UserSchema.virtual('fullName')
 UserSchema.pre<UserSchemaType>('save', function (next) {
     if (this.password) {
         this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
-        debugger;
         this.password = this.hashPassword(this.password);
     }
     next();

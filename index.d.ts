@@ -38,6 +38,7 @@ declare type Indexable<T> = T & { _id: any; };
 declare type Versionable<T> = { current: T, previous: Array<T> };
 
 declare module 'express-hbs' {
+    import handlebars from 'handlebars';
     interface Options {
         //"{String/Array} [Required] Path to partials templates, one or several directories",
         partialsDir?: string | string[]
@@ -63,8 +64,19 @@ declare module 'express-hbs' {
         beautify?: boolean;
 
         // override the default compile
-        onCompile?(exhbs: any, source:string, filename:string): any;
-}
+        onCompile?(exhbs: any, source: string, filename: string): any;
+    }
 
-function express4(options: Options): Function;
+    function express4(options: Options): Function;
+
+    // registerHelper
+    function registerHelper(name: string, fn: handlebars.HelperDelegate): void
+
+    class safeString extends handlebars.SafeString{
+        constructor(str: string);
+    }
+
+    interface EHBS {
+        express4(options: Options): Function;
+    }
 }

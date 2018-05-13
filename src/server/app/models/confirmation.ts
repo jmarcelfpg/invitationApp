@@ -4,12 +4,13 @@ const { ObjectId, Number, String } = Schema.Types;
 type ConfirmationType = Base.Versionable<{}>;
 export const confirmationSchema: ConfirmationType = {
     current: new Schema({
-        status: Number,
         feedback: String,
+        status: Number,
     }),
     previous: [{
-        status: Number, feedback: String
-    }]
+        feedback: String,
+        status: Number,
+    }],
 };
 const ConfirmationSchema = new Schema(
     (confirmationSchema as ConfirmationType),
@@ -19,5 +20,6 @@ export type ConfirmationDocumentType = Versionable<Model.IConfirmation> & Docume
 interface ConfirmationSchemaMethods { }
 type ConfirmationSchemaType = ConfirmationDocumentType & ConfirmationSchemaMethods;
 type ConfirmationModelType = Model<ConfirmationSchemaType>;
-const Confirmation: ConfirmationModelType = model<ConfirmationSchemaType, ConfirmationModelType>('Confirmation', ConfirmationSchema);
+const Confirmation: ConfirmationModelType =
+    model<ConfirmationSchemaType, ConfirmationModelType>('Confirmation', ConfirmationSchema);
 export default Confirmation;

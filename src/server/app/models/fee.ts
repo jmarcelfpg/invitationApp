@@ -1,5 +1,5 @@
-import { Document, model, Model, Schema, SchemaDefinition } from 'mongoose';
 import { prependListener } from 'cluster';
+import { Document, model, Model, Schema, SchemaDefinition } from 'mongoose';
 const { ObjectId, Date, Number, String } = Schema.Types;
 
 type FeeType = { total: any } & Base.Versionable<{}>;
