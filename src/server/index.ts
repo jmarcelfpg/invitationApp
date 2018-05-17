@@ -12,9 +12,9 @@ dotenv.config({ path: '.env' });
     const db = await mongoService();
     const app = await expressService();
     const passport = initPassport();
-    const transporter = mailService();
+    const tranporter = mailService();
     initHBS();
-    setAPIRoutes(app, passport, transporter);
+    setAPIRoutes(app, passport, tranporter);
     console.log('Starting Express Server'); http.createServer(app)
         .listen(app.get('port'), () => {
             console.log('Express listening on port ' + app.get('port'));

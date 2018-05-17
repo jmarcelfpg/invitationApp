@@ -11,6 +11,7 @@ const userSchema: UserType = {
     email: { type: String, unique: true, lowercase: true, trim: true },
     fee: feeSchema,
     firstName: { type: String, trim: true },
+    isNewer: Boolean,
     lastName: { type: String, trim: true },
     password: String,
     phone: { type: String, lowercase: true },
@@ -32,9 +33,10 @@ UserSchema.virtual('fullName')
         this.lastName = splitName[1] || '';
     });
 UserSchema.pre<UserSchemaType>('save', function (next) {
-    if (this.password) {
+    if (this.isNewer && this.password) {
         this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
         this.password = this.hashPassword(this.password);
+        this.isNewer = false;
     }
     next();
 });
@@ -43,7 +45,8 @@ UserSchema.methods.hashPassword = function (password: string) {
     return crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha512').toString('base64');
 };
 UserSchema.methods.authenticate = function (password: string) {
-    return this.password === this.hashPassword(password);
+    const result = this.password === this.hashPassword(password);
+    return result;
 };
 
 UserSchema.set('toJSON', {

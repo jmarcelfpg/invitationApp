@@ -29,7 +29,7 @@ export default class UserController extends Controller {
                 },
                 {
                     class: 'unhidden',
-                    name: 'logout',
+                    name: 'signout',
                     text: 'Logout',
                 }],
                 // Set the page title variable
@@ -64,7 +64,7 @@ export default class UserController extends Controller {
                 },
                 {
                     class: 'unhidden',
-                    name: 'logout',
+                    name: 'signout',
                     text: 'Logout',
                 }],
                 // Set the page title variable
@@ -77,31 +77,38 @@ export default class UserController extends Controller {
         if (!req.user) {
             return res.redirect('/signin');
         } else {
-            console.log(req.user);
             // res.sendFile(path.join(__dirname, '..', '..', 'public', 'signin.html'));
             // Use the 'response' object to render the signin page
-            res.render('admin', {
-                // Set the flash message variable
-                messages: req.flash('error') || req.flash('info'),
-                // setting the navigation tabs
-                navigator: [
-                    {
-                        class: 'unhidden',
-                        name: 'board',
-                        text: 'Programa',
-                    },
-                    {
-                        class: 'unhidden',
-                        name: 'profile',
-                        text: 'Perfil',
-                    },
-                    {
-                        class: 'unhidden',
-                        name: 'logout',
-                        text: 'Logout',
-                    }],
-                // Set the page title variable
-                title: 'Board',
+            User.find({ 'confirmation.current.status': '0' }, '-confirmation', { lean: true }, (err, results) => {
+                debugger;
+                let confirmations = 1;
+                if (!err) {
+                    confirmations = results.length;
+                }
+                res.render('admin', {
+                    confirmations,
+                    // Set the flash message variable
+                    messages: req.flash('error') || req.flash('info'),
+                    // setting the navigation tabs
+                    navigator: [
+                        {
+                            class: 'unhidden',
+                            name: 'board',
+                            text: 'Programa',
+                        },
+                        {
+                            class: 'unhidden',
+                            name: 'profile',
+                            text: 'Perfil',
+                        },
+                        {
+                            class: 'unhidden',
+                            name: 'signout',
+                            text: 'Logout',
+                        }],
+                    // Set the page title variable
+                    title: 'Board',
+                });
             });
         }
     }
@@ -183,10 +190,12 @@ export default class UserController extends Controller {
                     feedback: 'initial State',
                     status: req.body.confirmation,
                 };
+                user.fee.total = 0;
                 user.fee.current = {
-                    feedback: 'initial fee',
-                    status: 0,
+                    ammout: 0,
+                    date: new Date(),
                 };
+                user.isNewer = true;
                 var message = null;
 
                 // Set the user provider property
@@ -207,7 +216,9 @@ export default class UserController extends Controller {
 
                     transporter.sendMail({
                         subject: 'Confirmacion a uaglia8830.invitationapp.tk',
-                        text: 'url with code for verification',
+                        text: 'Bienvenido al evento aqui esta tu informacion \n' +
+                            `username: ${req.body.username} \n` +
+                            `password: ${req.body.password}`,
                         to: user.email,
                     });
                     // If the user was created successfully use the Passport 'login' method to login
@@ -259,11 +270,11 @@ export default class UserController extends Controller {
             User.find()
                 .then((Users) => {
                     const users = Users.map((user) => {
-                        const { firstName, lastName, visits, confirmation: {
+                        const { id, firstName, lastName, visits, confirmation: {
                             current: { status } },
                             fee: {
                                 current: { ammout } } } = user;
-                        return { firstName, lastName, visits, confirmation: status, fee: ammout };
+                        return { id, firstName, lastName, visits, confirmation: status, fee: ammout };
                     });
                     res.send(users);
                 })
@@ -279,6 +290,85 @@ export default class UserController extends Controller {
                         return res.send('Error');
                     }
                 });
+        }
+    }
+    public getConfirmation: RequestHandler = (req, res) => {
+        if (req.user) {
+            const user = req.user;
+            res.send(user.confirmation.current.status.toString());
+        }
+        res.send('0');
+    }
+    public setConfirmation: RequestHandler = (req, res) => {
+        if (req.user) {
+            const user = req.user;
+            user.confirmation.previous.push(user.confirmation.current);
+            user.confirmation.current.status = req.body.confirmation;
+            user.confirmation.current.feedback = 'updated';
+            user.save((err: MongooseError) => {
+                // If an error occurs, use flash messages to report the error
+                if (err) {
+                    // Use the error handling method to get the error message
+                    var message = this.getErrorMessage(err);
+
+                    // Redirect the user back to the signup page
+                    return res.send('0');
+                }
+                res.send(req.body.confirmation);
+            });
+        } else {
+            res.send('0');
+        }
+    }
+    public addFee: RequestHandler = (req, res) => {
+        if (req.user) {
+            User.findById(req.body.id, (error, user) => {
+                if (error) {
+                    const errorMessage = {
+                        error,
+                        message: 'something went wrong',
+                    };
+                    res.send(errorMessage);
+                }
+                if (user) {
+                    user.fee.previous.push(user.fee.current);
+                    user.fee.current = {
+                        ammout: req.body.deposit,
+                        date: new Date(),
+                    };
+                    user.fee.total = user.fee.total ? user.fee.total : 0;
+                    user.fee.total += +req.body.deposit;
+                    user.save((err: MongooseError) => {
+                        // If an error occurs, use flash messages to report the error
+                        if (err) {
+                            // Use the error handling method to get the error message
+                            var message = this.getErrorMessage(err);
+                            const failureMessage = {
+                                err,
+                                message,
+                            };
+                            // Redirect the user back to the signup page
+                            return res.send(failureMessage);
+                        }
+                        const successMessage = {
+                            fee: user.fee.total,
+                        };
+                        res.send(successMessage);
+                    });
+                } else {
+                    const notFoundMessage = {
+                        error: new Error('User not Fouded'),
+                        message: 'Not User Founded',
+                    };
+                    res.send(notFoundMessage);
+                }
+            });
+        } else {
+            const loggedoutMessage = {
+                err: new Error('User Logged out'),
+                message: 'Not User Logged',
+            };
+            res.send(loggedoutMessage);
         }
     }
     // Create a new error handling controller method
