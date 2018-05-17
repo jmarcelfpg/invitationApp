@@ -12,6 +12,7 @@ declare namespace Base {
         visits: any;
         provider: any;
         fee: any;
+        isNewer: any;
     }
     export interface IConfirmation {
         status: any;
@@ -72,11 +73,17 @@ declare module 'express-hbs' {
     // registerHelper
     function registerHelper(name: string, fn: handlebars.HelperDelegate): void
 
-    class safeString extends handlebars.SafeString{
+    class safeString extends handlebars.SafeString {
         constructor(str: string);
     }
 
     interface EHBS {
         express4(options: Options): Function;
     }
+}
+
+declare module 'email-verification';
+
+interface CustomChildrenCollection extends HTMLCollection{
+    [key: string]: any;
 }

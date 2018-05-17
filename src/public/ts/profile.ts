@@ -12,7 +12,7 @@ const buttons = document.getElementById('buttons');
 if (buttons) {
     buttons.addEventListener('click', (event) => {
         const confirmationOption = (event.target as HTMLButtonElement).value;
-        axios.post('/confirmation', { confirmation: confirmationOption }).then((response) => {
+        axios.put('/confirmation', { confirmation: confirmationOption }).then((response) => {
             console.log(response.data);
             if (confirmation) {
                 confirmation.innerText = `Usted a ${confirmationEnum[response.data]} la invitacion`;
