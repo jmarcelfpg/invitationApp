@@ -11,16 +11,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const http_1 = __importDefault(require("http"));
-const mongoose_1 = __importDefault(require("./config/mongoose"));
-const express_1 = __importDefault(require("./config/express"));
-const passport_1 = __importDefault(require("./config/passport"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const http_1 = __importDefault(require("http"));
+const apiRoutes_1 = __importDefault(require("./app/routes/apiRoutes"));
+const express_1 = __importDefault(require("./config/express"));
+const handlebars_1 = __importDefault(require("./config/handlebars"));
+const mail_1 = __importDefault(require("./config/mail"));
+const mongoose_1 = __importDefault(require("./config/mongoose"));
+const passport_1 = __importDefault(require("./config/passport"));
 dotenv_1.default.config({ path: '.env' });
 (() => __awaiter(this, void 0, void 0, function* () {
     const db = yield mongoose_1.default();
     const app = yield express_1.default();
-    passport_1.default();
+    const passport = passport_1.default();
+    const tranporter = mail_1.default();
+    handlebars_1.default();
+    apiRoutes_1.default(app, passport, tranporter);
     console.log('Starting Express Server');
     http_1.default.createServer(app)
         .listen(app.get('port'), () => {
