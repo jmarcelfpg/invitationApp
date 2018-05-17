@@ -12,15 +12,15 @@
 
 <body>
     <div class="wrapper">
-        <form action="/register" method="POST" id="registerForm">
+        <form action="/signup" method="POST" id="registerForm">
             <Legend>Registro</Legend>
             <br/>
             <div class="row">
                 <div class="column">
-                    <label for="name">Nombre:
+                    <label for="firstName">Nombre:
                         <span>*</span>
                     </label>
-                    <input type="text" name="name" id="name" placeholder="Ingrese su nombre"
+                    <input type="text" name="firstName" id="firstName" placeholder="Ingrese su nombre"
                         required>
                     <br />
 
@@ -31,14 +31,14 @@
                         required>
                     <br />
 
-                    <label for="userName">Nombre de Usuario:
+                    <label for="username">Nombre de Usuario:
                     </label>
-                    <input type="text" name="userName" id="userName" placeholder="Ingrese un nombre de usuario" >
+                    <input type="text" name="username" id="username" placeholder="Ingrese un nombre de usuario" >
                     <br />
 
-                    <label for="contact">Celular:
+                    <label for="phone">Celular:
                     </label>
-                    <input type="text" name="contact" id="contact" placeholder="Ingrese su celular" >
+                    <input type="text" name="phone" id="phone" placeholder="Ingrese su celular" >
                     <br />
 
                     <label for="confirmation">Confirmacion al evento:
@@ -80,6 +80,7 @@
                     <input type="password" name="passwordconfirm" id="passwordconfirm" placeholder="Repita su contraseña"
                         required>
                     <br/>
+                    <h2>{{messages}}</h2>
                 </div>
             </div>
 
@@ -87,8 +88,10 @@
             <br />
             <div class="links">
                 <input type="submit" value="Registrar" id="register" class="button" />
-                <a href="/index">Regresar al Log in</a>
+                <a href="/signin">Regresar al Log in</a>
             </div>
+
+            <input type="hidden" name="role" value=1>
         </form>
         <br/>
     </div>

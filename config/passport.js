@@ -20,6 +20,7 @@ function default_1() {
         });
     });
     local_1.default();
+    return passport_1.default;
 }
 exports.default = default_1;
 //# sourceMappingURL=passport.js.map
