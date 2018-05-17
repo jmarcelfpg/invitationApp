@@ -1,0 +1,20 @@
+{{!< default}} <div class="content">
+    <h2>Confirmados: {{confirmations}}</h2>
+    <table class="userTable">
+        <thead>
+            <tr>
+                <td>Nombre</td>
+                <td>Apellido</td>
+                <td>Confirmacion</td>
+                {{!-- <td>Visitas</td> --}}
+                <td>Cuota</td>
+                <td>Depositos</td>
+            </tr>
+        </thead>
+        <tbody class="users" id="users">
+        </tbody>
+    </table>
+    </div>
+    </div>
+    {{#contentFor 'scripts'}}
+    <script src="js/admin.js"></script> {{/contentFor}}

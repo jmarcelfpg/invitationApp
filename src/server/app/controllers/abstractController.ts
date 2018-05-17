@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from 'express-serve-static-core';
+import { NextFunction, Request, Response } from 'express-serve-static-core';
 import { Model } from 'mongoose';
 
 abstract class Controller {
-    abstract model: Model<any>
+    abstract model: Model<any>;
 
     // Get all
     getAll(req: Request, res: Response) {

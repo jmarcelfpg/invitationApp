@@ -125,6 +125,7 @@ a{
 
 .userTable{
 	width: 100%;
+	flex-flow: column;
 	text-align: center;
 	border: none;
 	border-collapse: collapse;
@@ -135,15 +136,28 @@ a{
 	font-weight: 600;
 }
 
-
 .userTable td{
 	border: 1px solid black;
 	background-color: grey;
 }
 
 .users td{
+	width: 15%;
 	color: black;
 	background-color: white;
+	padding: 0;
+}
+
+.adder{
+	width: 120px;
+	text-align: right;
+	font-size: 1.5rem;
+	font-weight: 600;
+	border: none;
+}
+
+.deposit{
+	border-radius: 10px;
 }
 
 .buttons{

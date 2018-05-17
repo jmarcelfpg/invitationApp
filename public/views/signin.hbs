@@ -12,24 +12,25 @@
 
 <body>
     <div class="wrapper">
-        <form action="/login" method="POST" class="login" id="login">
+        <form action="/signin" method="POST" class="login" id="login">
             <legend>Login</legend>
             <br/>
-            <input type="text" name="userName" id="userName" placeholder="Ingrese su nombre de usuario registrado" required>
-            <label for="userName">Nombre de usuario</label>
+            <input type="text" name="username" id="username" placeholder="Ingrese su nombre de usuario registrado" required>
+            <label for="username">Nombre de usuario</label>
             <br/>
             <input type="password" name="password" id="password" placeholder="Ingrese su password" required>
             <label for="password">Password</label>
             <br/>
+            <h2>{{messages}}</h2>
 
             <button>Ingresar</button>
             <br/>
-            <a href="/register">Registar</a>
+            <a href="/signup">Registar</a>
         </form>
-        <a href="/resetPass">Olvido su contraseña?</a>
+        {{!-- <a href="/forgotPass">Olvido su contraseña?</a> --}}
     </div>
     <script src="js/vendor.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/signin.js"></script>
 </body>
 
 </html>
